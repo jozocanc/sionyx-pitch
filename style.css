@@ -1,0 +1,241 @@
+/* ─── Google Fonts ─── */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@800;900&family=Barlow:wght@300;400;500&display=swap');
+
+/* ─── Variables ─── */
+:root {
+  --bg: #0A0A0A;
+  --white: #FFFFFF;
+  --text-dim: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.4);
+  --border: rgba(255,255,255,0.25);
+  --divider: rgba(255,255,255,0.2);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; }
+a { text-decoration: none; }
+
+/* ─── Base ─── */
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ─── Noise grain overlay ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* ─── Top bar ─── */
+.top-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 1.6rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+.top-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ─── Entry page center layout ─── */
+.entry-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Logo ─── */
+.site-logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 2.5rem;
+}
+
+/* ─── Divider ─── */
+.divider {
+  width: 40px;
+  height: 1px;
+  background: var(--divider);
+  margin: 0 auto 2rem;
+}
+
+/* ─── Tagline ─── */
+.tagline {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(0.85rem, 1.8vw, 1rem);
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  line-height: 1.9;
+  max-width: 460px;
+  margin-bottom: 3.5rem;
+  font-weight: 300;
+}
+.tagline em {
+  color: rgba(255,255,255,0.9);
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* ─── Portal buttons ─── */
+.portals {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.portal-btn {
+  border: 1px solid var(--border);
+  color: rgba(255,255,255,0.85);
+  background: transparent;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  padding: 0.9rem 2.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  position: relative;
+}
+.portal-btn:hover {
+  background: var(--white);
+  color: var(--bg);
+  border-color: var(--white);
+}
+.portal-sep {
+  color: rgba(255,255,255,0.12);
+  font-size: 1rem;
+}
+
+/* ─── Footer note ─── */
+.footer-note {
+  position: fixed;
+  bottom: 1.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-weight: 500;
+  z-index: 10;
+}
+
+/* ─── Portal page (marine / defense) ─── */
+.portal-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* YouTube iframe fills entire viewport */
+.portal-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* Scale up to cover aspect ratio gaps */
+  transform: scale(1.05);
+}
+
+/* Dark overlay so CTA button is readable */
+.portal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 2;
+}
+
+/* CTA button centered over video — hidden initially */
+.portal-cta {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  border: 1px solid var(--white);
+  color: var(--white);
+  background: transparent;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  padding: 1rem 3rem;
+  white-space: nowrap;
+}
+.portal-cta:hover {
+  background: var(--white);
+  color: var(--bg);
+}
+.portal-cta.visible {
+  opacity: 1;
+}
+
+/* Back arrow */
+.back-btn {
+  position: absolute;
+  top: 1.6rem;
+  left: 2.5rem;
+  z-index: 10;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.back-btn:hover { color: var(--white); }
+
+/* ─── Video autoplay fallback ─── */
+/* If YouTube iframe fails to load/autoplay (e.g. iOS Safari),
+   the portal-page background (#0A0A0A) shows through and the
+   CTA button is still made visible after 3s by JS — so the
+   user can still click through to the real SiOnyx site */
+
+/* ─── Transition overlay (injected by JS) ─── */
+.portal-transition-overlay {
+  position: fixed;
+  border-radius: 50%;
+  background: var(--bg);
+  transform: scale(0);
+  pointer-events: none;
+  z-index: 999;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.portal-transition-overlay.expand {
+  transform: scale(80);
+}
