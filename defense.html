@@ -13,7 +13,8 @@
     <!-- YouTube fullscreen video -->
     <iframe
       class="portal-video"
-      src="https://www.youtube.com/embed/mqabWQaRXoI?autoplay=1&mute=1&loop=1&controls=1&playlist=mqabWQaRXoI&playsinline=1&rel=0&enablejsapi=1&start=0&end=15"
+      id="defense-video"
+      src="https://www.youtube.com/embed/mqabWQaRXoI?autoplay=1&mute=1&controls=1&playsinline=1&rel=0&enablejsapi=1"
       allow="autoplay; fullscreen"
       allowfullscreen
     ></iframe>
@@ -38,6 +39,26 @@
       const cta = document.getElementById('portal-cta');
       if (cta) cta.classList.add('visible');
     }, 3000);
+
+    // Loop first 15 seconds using YouTube API
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('defense-video', {
+        events: {
+          'onReady': function(e) {
+            e.target.playVideo();
+            setInterval(function() {
+              if (player.getCurrentTime && player.getCurrentTime() >= 15) {
+                player.seekTo(0);
+              }
+            }, 500);
+          }
+        }
+      });
+    }
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.head.appendChild(tag);
   </script>
 </body>
 </html>
