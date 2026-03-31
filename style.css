@@ -71,9 +71,10 @@ body::before {
 
 /* ─── Logo ─── */
 .site-logo {
-  height: 100px;
+  height: 140px;
   width: auto;
   margin-bottom: 2.5rem;
+  mix-blend-mode: screen;
 }
 
 /* ─── Divider ─── */
