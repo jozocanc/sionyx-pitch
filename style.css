@@ -9,6 +9,9 @@
   --text-muted: rgba(255,255,255,0.4);
   --border: rgba(255,255,255,0.25);
   --divider: rgba(255,255,255,0.2);
+  --text-bright: rgba(255,255,255,0.9);
+  --text-faint: rgba(255,255,255,0.12);
+  --overlay-dark: rgba(0,0,0,0.35);
 }
 
 /* ─── Reset ─── */
@@ -22,7 +25,6 @@ body {
   color: var(--white);
   font-family: 'Barlow', sans-serif;
   min-height: 100vh;
-  overflow: hidden;
 }
 
 /* ─── Noise grain overlay ─── */
@@ -94,7 +96,7 @@ body::before {
   font-weight: 300;
 }
 .tagline em {
-  color: rgba(255,255,255,0.9);
+  color: var(--text-bright);
   font-style: normal;
   font-weight: 400;
 }
@@ -127,7 +129,7 @@ body::before {
   border-color: var(--white);
 }
 .portal-sep {
-  color: rgba(255,255,255,0.12);
+  color: var(--text-faint);
   font-size: 1rem;
 }
 
@@ -165,13 +167,14 @@ body::before {
   border: none;
   /* Scale up to cover aspect ratio gaps */
   transform: scale(1.05);
+  will-change: transform;
 }
 
 /* Dark overlay so CTA button is readable */
 .portal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: var(--overlay-dark);
   z-index: 2;
 }
 
@@ -183,7 +186,7 @@ body::before {
   transform: translateX(-50%);
   z-index: 3;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 0.8s ease, background 0.2s ease, color 0.2s ease;
   border: 1px solid var(--white);
   color: var(--white);
   background: transparent;
@@ -194,6 +197,7 @@ body::before {
   text-transform: uppercase;
   padding: 1rem 3rem;
   white-space: nowrap;
+  cursor: pointer;
 }
 .portal-cta:hover {
   background: var(--white);
