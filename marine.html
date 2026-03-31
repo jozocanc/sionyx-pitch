@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marine — SIONYX</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="portal-page">
+
+    <!-- YouTube fullscreen video -->
+    <iframe
+      class="portal-video"
+      src="https://www.youtube.com/embed/evUw2PrWgJE?autoplay=1&mute=1&loop=1&controls=0&playlist=evUw2PrWgJE&playsinline=1&rel=0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+    ></iframe>
+
+    <!-- Dark overlay -->
+    <div class="portal-overlay"></div>
+
+    <!-- CTA button (fades in after 3s via JS) -->
+    <a href="https://www.sionyx.com/collections/marine" class="portal-cta" id="portal-cta" target="_blank">
+      Explore Marine
+    </a>
+
+    <!-- Back arrow -->
+    <a href="index.html" class="back-btn">← Back</a>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Fade in CTA after 3 seconds
+    setTimeout(() => {
+      const cta = document.getElementById('portal-cta');
+      if (cta) cta.classList.add('visible');
+    }, 3000);
+  </script>
+</body>
+</html>
